@@ -16,6 +16,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import com.crm.autodesk.genericlib.BaseClass;
 import com.crm.autodesk.genericlib.ExcelUtility;
 import com.crm.autodesk.genericlib.FileUtility;
 import com.crm.autodesk.genericlib.JavaUtils;
@@ -33,11 +34,9 @@ import com.crm.autodesk.objectrrepositorylib.Organizations;
  * @author Deepak
  *
  */
-public class CreateContact {
+public class CreateContact extends BaseClass{
 	/* object  Creation*/
 	JavaUtils jLib = new JavaUtils();
-	WebDriverUtiles wLib = new WebDriverUtiles();
-	FileUtility flib = new FileUtility();
 	ExcelUtility eLib = new ExcelUtility();
 
 	@Test
@@ -45,10 +44,10 @@ public class CreateContact {
 
 		/* Common Data */
 		int randomNum = jLib.generateRandomNum();
-		String USERNAME = flib.getPropertyKeyValue("username");
-		String PASSWORD = flib.getPropertyKeyValue("password");
-		String URL = flib.getPropertyKeyValue("url");
-		String BROWSER = flib.getPropertyKeyValue("browser");
+//		String USERNAME = flib.getPropertyKeyValue("username");
+//		String PASSWORD = flib.getPropertyKeyValue("password");
+//		String URL = flib.getPropertyKeyValue("url");
+//		String BROWSER = flib.getPropertyKeyValue("browser");
 
 		/* test Data */
 		String orgName = eLib.getExcelData("contact", "tc_01", "OrgName")+ randomNum;
@@ -59,24 +58,24 @@ public class CreateContact {
 		String contLastNAme = eLib.getExcelData("contact", "tc_01", "contactName") + randomNum;
 
 		/* step 1 : login to APP */
-		WebDriver driver = null;
-		 if(BROWSER.equalsIgnoreCase("firefox")) {
-		    driver= new FirefoxDriver();  
-		 }else if(BROWSER.equalsIgnoreCase("chrome")) {
-			 driver = new ChromeDriver();
-		 }else if(BROWSER.equalsIgnoreCase("ie")) {
-			 driver = new InternetExplorerDriver();
-		 }
+//		WebDriver driver = null;
+//		 if(BROWSER.equalsIgnoreCase("firefox")) {
+//		    driver= new FirefoxDriver();  
+//		 }else if(BROWSER.equalsIgnoreCase("chrome")) {
+//			 driver = new ChromeDriver();
+//		 }else if(BROWSER.equalsIgnoreCase("ie")) {
+//			 driver = new InternetExplorerDriver();
+//		 }
 		
-		wLib.waitForHTMLDOM(driver);
-		driver.get(URL);
+//		wlib.waitForHTMLDOM(driver);
+//		driver.get(URL);
 
 		/* step 1 : login to APP */
-		  Login lp = new Login(driver);
-		        lp.loginToApp(USERNAME, PASSWORD);
+//		  Login lp = new Login(driver);
+//		        lp.loginToApp(USERNAME, PASSWORD);
 
 		/* step 2 : navigate to Organization page */
-		   Home hp = new Home(driver);
+				hp = new Home(driver);
 		        hp.getOrgLnk().click();
 
 		/* step 3 : navigate ot create Org Page */
@@ -106,8 +105,8 @@ public class CreateContact {
 		 /* step 8 : verify */
 		
 		 /* step 9 : logout & close */
-            hp.logout();
-            driver.close();
+//            hp.logout();
+//            driver.close();
 
 		 
 
