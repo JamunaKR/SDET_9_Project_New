@@ -39,6 +39,12 @@ public class Home  extends WebDriverUtiles{
 	@FindBy(linkText = "Products")
     private WebElement productlnk;
 
+	
+	
+	public WebElement getProductlnk() {
+		return productlnk;
+	}
+
 	public WebElement getContactLnk() {
 		return contactLnk;
 	}

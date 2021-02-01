@@ -29,10 +29,10 @@ public class ExcelUtility {
  * @throws Throwable
     */
 	
-	String filePath = "./testData/TestData.xlsx";
+	
 	
 	public String getExcelData(String shettName , int rowNum , int colNum) throws Throwable {
-		FileInputStream fis = new FileInputStream(filePath);
+		FileInputStream fis = new FileInputStream(IConstant.excelFilePath);
 		Workbook wb = WorkbookFactory.create(fis);
 		Sheet sh = wb.getSheet(shettName);
 		Row row = sh.getRow(rowNum);
@@ -52,7 +52,7 @@ public class ExcelUtility {
  */
 	
 	public String getExcelData(String filePath, String shettName , int rowNum , int colNum) throws Throwable {
-		FileInputStream fis = new FileInputStream(filePath);
+		FileInputStream fis = new FileInputStream(IConstant.excelFilePath);
 		Workbook wb = WorkbookFactory.create(fis);
 		Sheet sh = wb.getSheet(shettName);
 		Row row = sh.getRow(rowNum);
@@ -72,7 +72,7 @@ public class ExcelUtility {
 		
 				int expTestRow = 0;
 				int expHeader = 0;
-				FileInputStream fis = new FileInputStream(filePath);
+				FileInputStream fis = new FileInputStream(IConstant.excelFilePath);
 				Workbook wb = WorkbookFactory.create(fis);
 				Sheet sh = wb.getSheet(sheetName);
 				int rowCount = sh.getLastRowNum();
@@ -114,13 +114,13 @@ public class ExcelUtility {
 	 */
 	
 	public void setExcelData(String shettName , int rowNum , int colNum ,String data) throws Throwable {
-		FileInputStream fis = new FileInputStream(filePath);
+		FileInputStream fis = new FileInputStream(IConstant.excelFilePath);
 		Workbook wb = WorkbookFactory.create(fis);
 		Sheet sh = wb.getSheet(shettName);
 		Row row = sh.getRow(rowNum);
 		Cell cel = row.createCell(colNum);
 		cel.setCellValue(data);
-		FileOutputStream fos = new FileOutputStream(filePath);
+		FileOutputStream fos = new FileOutputStream(IConstant.excelFilePath);
 				wb.write(fos);
 		wb.close();
 	}
@@ -131,7 +131,7 @@ public class ExcelUtility {
 	 * @throws Throwable
 	 */
 	public int getRowCount(String shettName)throws Throwable {
-		FileInputStream fis = new FileInputStream(filePath);
+		FileInputStream fis = new FileInputStream(IConstant.excelFilePath);
 		Workbook wb = WorkbookFactory.create(fis);
 		Sheet sh = wb.getSheet(shettName);
 	

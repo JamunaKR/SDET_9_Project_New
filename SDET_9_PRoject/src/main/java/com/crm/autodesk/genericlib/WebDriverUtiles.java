@@ -47,7 +47,7 @@ public class WebDriverUtiles {
 	 * @param elemnet
 	 */
 	public void waitforElementToBeClickable(WebDriver driver , WebElement element) {
-		 WebDriverWait wait = new WebDriverWait(driver, 20);
+		 WebDriverWait wait = new WebDriverWait(driver, IConstant.explicitlyWaitWiat);
 		 wait.until(ExpectedConditions.elementToBeClickable(element));
 	}
 	/**
@@ -55,7 +55,7 @@ public class WebDriverUtiles {
 	 * @param driver
 	 */
 	public void waitForHTMLDOM(WebDriver driver) {
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(IConstant.implicitlyWiat, TimeUnit.SECONDS);
 		
 	}
 	

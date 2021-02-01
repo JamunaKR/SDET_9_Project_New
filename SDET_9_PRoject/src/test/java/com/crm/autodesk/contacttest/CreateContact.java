@@ -21,6 +21,7 @@ import com.crm.autodesk.genericlib.ExcelUtility;
 import com.crm.autodesk.genericlib.FileUtility;
 import com.crm.autodesk.genericlib.JavaUtils;
 import com.crm.autodesk.genericlib.WebDriverUtiles;
+import com.crm.autodesk.objectrrepositorylib.ContactInfo;
 import com.crm.autodesk.objectrrepositorylib.Contacts;
 import com.crm.autodesk.objectrrepositorylib.CreateNewConatct;
 import com.crm.autodesk.objectrrepositorylib.CreateNewOrganization;
@@ -35,47 +36,44 @@ import com.crm.autodesk.objectrrepositorylib.Organizations;
  *
  */
 public class CreateContact extends BaseClass{
-	/* object  Creation*/
-	JavaUtils jLib = new JavaUtils();
-	ExcelUtility eLib = new ExcelUtility();
 
-	@Test
-	public void createContactWitORgTest() throws Throwable {
-
-		/* Common Data */
-		int randomNum = jLib.generateRandomNum();
-//		String USERNAME = flib.getPropertyKeyValue("username");
-//		String PASSWORD = flib.getPropertyKeyValue("password");
-//		String URL = flib.getPropertyKeyValue("url");
-//		String BROWSER = flib.getPropertyKeyValue("browser");
-
+	@Test(groups = "smokeTest")
+	public void createContactTest() throws Throwable {
+        int randomNum = javaLib.generateRandomNum();
 		/* test Data */
-		String orgName = eLib.getExcelData("contact", "tc_01", "OrgName")+ randomNum;
-		String orgType = eLib.getExcelData("contact", "tc_01", "orgType");
-		String orgIndustry = eLib.getExcelData("contact", "tc_01", "Industry");
-		String orgRating = eLib.getExcelData("contact", "tc_01", "rating");
-
-		String contLastNAme = eLib.getExcelData("contact", "tc_01", "contactName") + randomNum;
-
-		/* step 1 : login to APP */
-//		WebDriver driver = null;
-//		 if(BROWSER.equalsIgnoreCase("firefox")) {
-//		    driver= new FirefoxDriver();  
-//		 }else if(BROWSER.equalsIgnoreCase("chrome")) {
-//			 driver = new ChromeDriver();
-//		 }else if(BROWSER.equalsIgnoreCase("ie")) {
-//			 driver = new InternetExplorerDriver();
-//		 }
-		
-//		wlib.waitForHTMLDOM(driver);
-//		driver.get(URL);
-
-		/* step 1 : login to APP */
-//		  Login lp = new Login(driver);
-//		        lp.loginToApp(USERNAME, PASSWORD);
+		String contLastNAme = excelLib.getExcelData("contact", "tc_10", "Contact") + randomNum;
 
 		/* step 2 : navigate to Organization page */
-				hp = new Home(driver);
+				Home hp = new Home(driver);
+				hp.getContactLnk().click();
+
+		/* step 3: navigate to create Contact page */
+		    Contacts cp = new Contacts(driver);
+		    cp.getCreateOrgImg().click();
+
+		/* step 7 : creat new Contact with Org */
+            CreateNewConatct cnc = new CreateNewConatct(driver);
+            cnc.createContact(contLastNAme);
+            
+  		  /*verify */
+		    ContactInfo info = new ContactInfo(driver);
+		    String actSuccessfullMsg = info.getSuccessFullMSG().getText();
+		    Assert.assertTrue(actSuccessfullMsg.contains(contLastNAme));
+	}
+
+
+	@Test(groups = "regressionTest")
+	public void createContactWitORgTest() throws Throwable {
+        int randomNum = javaLib.generateRandomNum();
+		/* test Data */
+		String orgName = excelLib.getExcelData("contact", "tc_01", "OrgName")+ randomNum;
+		String orgType = excelLib.getExcelData("contact", "tc_01", "orgType");
+		String orgIndustry = excelLib.getExcelData("contact", "tc_01", "Industry");
+		String orgRating = excelLib.getExcelData("contact", "tc_01", "rating");
+		String contLastNAme = excelLib.getExcelData("contact", "tc_01", "contactName") + randomNum;
+
+		/* step 2 : navigate to Organization page */
+				Home hp = new Home(driver);
 		        hp.getOrgLnk().click();
 
 		/* step 3 : navigate ot create Org Page */
@@ -102,14 +100,10 @@ public class CreateContact extends BaseClass{
             CreateNewConatct cnc = new CreateNewConatct(driver);
             cnc.createConatct(contLastNAme, orgName);
 
-		 /* step 8 : verify */
-		
-		 /* step 9 : logout & close */
-//            hp.logout();
-//            driver.close();
-
-		 
-
+  		  /*verify */
+		    ContactInfo info1 = new ContactInfo(driver);
+		    String actSuccessfullMsg1 = info1.getSuccessFullMSG().getText();
+		    Assert.assertTrue(actSuccessfullMsg1.contains(contLastNAme));
 	}
 
 }
