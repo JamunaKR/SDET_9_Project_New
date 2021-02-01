@@ -2,6 +2,7 @@ package com.crm.autodesk.genericlib;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
@@ -38,12 +39,17 @@ public class BaseClass {
 	 */
 	@BeforeClass
 	public void configBC() throws Throwable {
-		if(flib.getPropertyKeyValue("browser").equalsIgnoreCase("chrome")) {
+		String BROWSER = flib.getPropertyKeyValue("browser");
+		if(BROWSER.equalsIgnoreCase("chrome")) {
 			driver=new ChromeDriver();
-			driver.manage().window().maximize();
-			wlib.waitForHTMLDOM(driver);
-			driver.get(flib.getPropertyKeyValue("url"));
+		}else if(BROWSER.equalsIgnoreCase("firefox")) {
+			driver=new ChromeDriver();
+		}else if(BROWSER.equalsIgnoreCase("ie")) {
+			driver=new InternetExplorerDriver();
 		}
+		driver.manage().window().maximize();
+		wlib.waitForHTMLDOM(driver);
+		driver.get(flib.getPropertyKeyValue("url"));
 	}
 	/**
 	 * login to Vtiger application
