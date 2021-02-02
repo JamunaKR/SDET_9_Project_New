@@ -38,16 +38,10 @@ public class BaseClass {
 		System.out.println("connect to database\n configure extent report");
 		dbLib.connectToDB();
 	}
-	
-	@BeforeTest(groups = {"smokeTest" , "regressionTest"})
-	public void configBT() {
-		//used for cross browser exceution
-	}
-	
 	@Parameters("browser")
-	@BeforeClass(groups = {"smokeTest" , "regressionTest"})
-	public void configBCParallel(String BROWSER) throws Throwable {
-		
+	//@BeforeTest(groups = {"smokeTest" , "regressionTest"})
+	public void configBT(String BROWSER) throws Throwable {
+		//used for cross browser exceution
 		if(BROWSER.equalsIgnoreCase("chrome")) {
 			driver=new ChromeDriver();
 		}else if(BROWSER.equalsIgnoreCase("firefox")) {
@@ -60,11 +54,14 @@ public class BaseClass {
 		driver.get(flib.getPropertyKeyValue("url"));
 	}
 	
+	
+
+	
 	/**
 	 * Launching the browser in normal mode and entering the url 
 	 * @throws Throwable
 	 */
-	//@BeforeClass(groups = {"smokeTest" , "regressionTest"})
+	@BeforeClass(groups = {"smokeTest" , "regressionTest"})
 	public void configBC() throws Throwable {
 		String BROWSER = flib.getPropertyKeyValue("browser");
 		if(BROWSER.equalsIgnoreCase("chrome")) {
@@ -108,6 +105,7 @@ public class BaseClass {
 	
 	@AfterTest(groups = {"smokeTest" , "regressionTest"})
 	public void configAT() {
+		driver.close();
 		//close browser launched in cross browser testing
 	}
 	
