@@ -3,19 +3,11 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.crm.autodesk.contacttest.CreateContact">
+      <class name="com.pratice.SampleRetryTest">
         <methods>
-          <include name="createContactWitORgTest"/>
-          <include name="configAS"/>
-          <include name="configBT"/>
-          <include name="configAC"/>
-          <include name="configBS"/>
-          <include name="configBC"/>
-          <include name="configAT"/>
-          <include name="configAM"/>
-          <include name="configBM"/>
+          <include name="createContact"/>
         </methods>
-      </class> <!-- com.crm.autodesk.contacttest.CreateContact -->
+      </class> <!-- com.pratice.SampleRetryTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
