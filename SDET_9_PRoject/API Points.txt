@@ -1,0 +1,21 @@
+1. Experince in BackEnd Automtion using RestAssured & PostMan
+2. Good Exposure in Rest -API testing 
+3. Good at httpRequest & response properties
+4. Good at httpMthod & statusCodes
+5. Good Knowledge on APi Parameters 
+6.Good Knowledge on APi Autentication
+7. Good Understanding on Rest Assued API class for creation of requset header & body
+8. Good Understanding on Rest Assued API class for validation of response header & body
+9. Good at JsonPath for validating complex response
+10 Experince on creation of Post APi body using Pojo class
+11 Good at APi response validation WRT database & GUI
+12 Good understanding API Functional Spec document
+13. involved in API Framework devlopmnet
+14. Involved  in  configuration of API framework using Maven
+15. Good Request chaining
+16 Exellent knowlegde on CRUD operation
+17. Very good at Webservice Concepts
+
+
+
+
